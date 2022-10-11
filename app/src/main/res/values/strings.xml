@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">moneybox</string>
+    <string name="logo_name">moneybox</string>
+    <string name="slogan_name">Looking problems to be resolved</string>
+
+    <!-- ONBOARDING SCREEN STRINGS-->
+
+    <!-- TITLES -->
+    <string name="first_slide_title">Money work for you</string>
+    <string name="second_slide_title">Register your movements</string>
+    <string name="third_slide_title">Everything is redy</string>
+
+    <!-- DESCRIPTION -->
+    <string name="first_slide_desc">Make that your money \n work for you</string>
+    <string name="second_slide_desc">Give the control of your \n money everyday</string>
+    <string name="third_slide_desc">Start getting the control \n right now</string>
+
+    <!-- BUTTONS -->
+    <string name="skip_btn">Skip</string>
+    <string name="next_btn">Next</string>
+    <string name="start_btn">Start</string>
+    <string name="slider" />
+
+    <!-- GENERAL TITLES -->
+    <string name="login">Moneybox</string>
+    <string name="check">Remember me</string>
+    <string name="forget">Forget Password</string>
+    <string name="btnLog">Login</string>
+    <string name="singUp">CREATE ACCOUNT</string>
+    <string name="btnNext">NEXT</string>
+    <string name="btnSG">SING UP</string>
+
+    <!--  INCOME EARN TITLE  -->
+    <string name="incomeTitle">Tell us...</string>
+
+
+    <!-- GENERAL DESC -->
+    <string name="login_desc">Log in to continue</string>
+    <string name="singUp_desc">Put your data in \n all fields</string>
+    <string name="incomeDes">¿How much is the flow of \n money that you have montly?</string>
+
+
+</resources>

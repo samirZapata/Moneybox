@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/app_name"
+    android:padding="30dp"
+    tools:context=".view.Dashboard">
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105dp"
+            android:fontFamily="@font/outfit_mediumm"
+            android:gravity="left"
+            android:text="Hello, Dam"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:layout_gravity="left"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_mediumm"
+            android:gravity="left"
+            android:text="Good, evening"
+            android:textColor="#75000000"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/viewIngresos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/outfit_mediumm"
+                android:gravity="center"
+                android:text="$ 1.200.000"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_gravity="left"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/outfit_mediumm"
+                android:gravity="left"
+                android:text="Registra tus gastos mensuales"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_gravity="left"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_mediumm"
+                android:gravity="left"
+                android:text="Gestiona tu dinero"
+                android:textColor="#75000000"
+                android:textSize="16dp" />
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/btnOP"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="#000"
+                    android:drawableTop="@drawable/wc"
+                    android:gravity="bottom|left"
+                    android:padding="30dp"
+                    android:text="Ocio &amp; \nPlacer"
+                    android:textAllCaps="false"
+                    app:cornerRadius="20dp" />
+
+                <Button
+                    android:id="@+id/btnGF"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginEnd="36dp"
+                    android:layout_marginBottom="150dp"
+                    android:backgroundTint="#000"
+                    android:gravity="center|left"
+                    android:padding="30dp"
+                    android:text="Gastos \nFijos"
+                    android:textAllCaps="false"
+                    app:cornerRadius="20dp" />
+
+                <Button
+                    android:id="@+id/btnIE"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="191dp"
+                    android:layout_marginBottom="7dp"
+                    android:backgroundTint="#000"
+                    android:drawableTop="@drawable/gm"
+                    android:gravity="bottom|left"
+                    android:padding="30dp"
+                    android:text="Ingreso \nExtra"
+                    app:cornerRadius="20dp"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/btnAH"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:layout_marginStart="190dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="150dp"
+                    android:backgroundTint="#000"
+                    android:drawableTop="@drawable/gm"
+                    android:gravity="bottom|left"
+                    android:padding="30dp"
+                    android:text="Ahorro"
+                    android:textAllCaps="false"
+                    app:cornerRadius="20dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>
