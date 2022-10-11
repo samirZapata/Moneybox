@@ -15,8 +15,8 @@ aplicación hará el cálculo automático del saldo restante.
 BBDD → MARIA DB
 
 ## Mockup
-<img src="./description/dashboard.png" width="200" />
-<img src="./description/login.png" width="200" />
+<img src="./description/mockups.png" width="200" />
+
 
 # Contribuyentes
 Yonier Zapata → [@samirZapata](https://github.com/samirZapata)
