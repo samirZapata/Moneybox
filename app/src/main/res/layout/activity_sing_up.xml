@@ -16,7 +16,7 @@
             android:id="@+id/txtHead"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="0dp"
             android:fontFamily="@font/outfit_mediumm"
             android:gravity="center"
             android:text="@string/login"
@@ -94,7 +94,7 @@
                 app:startIconTint="#000">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtUser"
+                    android:id="@+id/edtUserSG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textAutoComplete" />
@@ -122,11 +122,70 @@
                 app:startIconTint="#000">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtPass"
+                    android:id="@+id/edtPassSG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLayoutPhone"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Telefono"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/phone"
+                app:startIconTint="#000">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPhoneSG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLayoutEmail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Email"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/mail"
+                app:startIconTint="#000">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtEmailSG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <Button
@@ -135,14 +194,13 @@
             android:layout_height="62dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="@string/btnNext"
+            android:text="@string/btnSG"
             android:textAllCaps="false"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="95dp"
             android:backgroundTint="#000"
             android:fontFamily="@font/montserrat_semiboldd"
             android:textSize="17dp"
-            android:onClick="callNextSG"
             android:transitionName="transition_next"
             />
 
