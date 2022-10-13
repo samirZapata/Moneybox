@@ -49,7 +49,7 @@ public class SingUp extends AppCompatActivity {
     RequestQueue requestQueue;
 
 
-    private final String baseUrl = "http://192.168.0.2:3000/";
+    private final String baseUrl = "http://172.17.4.25:3000/usuarios";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -76,7 +76,19 @@ public class SingUp extends AppCompatActivity {
             startActivity(i);
         });
 
-        listeners();
+
+        btnSend.setOnClickListener((View view) -> {
+//            String nombre = edtName.getText().toString();
+//            String phone = edtPhone.getText().toString();
+//            String email = edtEmail.getText().toString();
+//            String usuario = edtUser.getText().toString();
+//            String clave = edtPass.getText().toString();
+
+            //System.out.print("LO DE LOS CAMPOS "+ nombre + phone + email + usuario + clave);
+            //saveUsers(nombre, phone, email, usuario, clave);
+
+            IngresarUsuario(baseUrl);
+        });
     }
 
     public void callNextSG(View view) {
@@ -146,18 +158,6 @@ public class SingUp extends AppCompatActivity {
     private void listeners() {
 
 
-        btnSend.setOnClickListener((View view) -> {
-            String nombre = edtName.getText().toString();
-            String phone = edtPhone.getText().toString();
-            String email = edtEmail.getText().toString();
-            String usuario = edtUser.getText().toString();
-            String clave = edtPass.getText().toString();
-
-            //System.out.print("LO DE LOS CAMPOS "+ nombre + phone + email + usuario + clave);
-            saveUsers(nombre, phone, email, usuario, clave);
-        });
-
-
     }
 
     private void clearTXT() {
@@ -176,20 +176,22 @@ public class SingUp extends AppCompatActivity {
         Log.i("Campo Pass", clave);
 
         String url = baseUrl + "usuarios";
-        StringRequest postRequest = new StringRequest(
-                Request.Method.POST,
-                url,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+//
                         Toast.makeText(SingUp.this, "Usuario insertado", Toast.LENGTH_SHORT).show();
+                        System.out.print("-------------------------------------------------------------------------");
+                        System.out.print("RESPUESTA " + response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(SingUp.this, error.getMessage() + "", Toast.LENGTH_LONG).show();
-                        Log.i("ERROR", error.getMessage());
+                        System.out.print(error);
+                        //Log.i("ERROR", error.getMessage());
                     }
                 }) {
 
@@ -206,5 +208,50 @@ public class SingUp extends AppCompatActivity {
         requestQueue.add(postRequest);
     }
 
+
+    private void IngresarUsuario(String baseUrl) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(SingUp.this, "Se ha insertado", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Toast.makeText(SingUp.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Log.e("error", error + "");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                Map<String, String> params = new HashMap<String, String>();
+                String nombre = edtName.getText().toString();
+                String phone = edtPhone.getText().toString();
+                String email = edtEmail.getText().toString();
+                String usuario = edtUser.getText().toString();
+                String clave = edtPass.getText().toString();
+
+                params.put("nombre", nombre);
+                params.put("telefono", phone);
+                params.put("email", email);
+                params.put("usuario", usuario);
+                params.put("clave", clave);
+
+
+                Log.i("Campo Nombre", nombre);
+                Log.i("Campo Phone", phone);
+                Log.i("Campo Email", email);
+                Log.i("Campo User", usuario);
+                Log.i("Campo Pass", clave);
+                Log.i("fsfsd", params.toString());
+                return params;
+
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 
 }
