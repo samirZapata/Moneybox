@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
     EditText edtUser, edtPass;
     RequestQueue requestQueue;
 
-    private final String baseUrl = "http://192.168.0.2:3300/";
+    private final String baseUrl = "http://192.168.0.2:3000/";
 
     @SuppressLint("MissingInflatedId")
     @Override
