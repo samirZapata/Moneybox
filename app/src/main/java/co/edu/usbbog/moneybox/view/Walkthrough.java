@@ -2,7 +2,6 @@ package co.edu.usbbog.moneybox.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -49,7 +48,7 @@ public class Walkthrough extends AppCompatActivity {
         addDots(0);
 
         btnStart.setOnClickListener((View view) -> {
-            Intent i = new Intent(Walkthrough.this, login.class);
+            Intent i = new Intent(Walkthrough.this, Login.class);
             startActivity(i);
             finish();
         });

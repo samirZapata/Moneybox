@@ -25,7 +25,7 @@ public class SingUpFinish extends AppCompatActivity {
         btnSingUpFIN = findViewById(R.id.btnSingUpFIN);
 
         btnLogin.setOnClickListener((View view) -> {
-            Intent i = new Intent(SingUpFinish.this, login.class);
+            Intent i = new Intent(SingUpFinish.this, Login.class);
             startActivity(i);
         });
 

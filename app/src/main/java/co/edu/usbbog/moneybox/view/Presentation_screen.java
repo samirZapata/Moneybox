@@ -62,7 +62,7 @@ public class Presentation_screen extends AppCompatActivity {
                 finish();
             }
             else {
-                Intent i = new Intent(Presentation_screen.this, login.class);
+                Intent i = new Intent(Presentation_screen.this, Login.class);
                 startActivity(i);
                 finish();
 

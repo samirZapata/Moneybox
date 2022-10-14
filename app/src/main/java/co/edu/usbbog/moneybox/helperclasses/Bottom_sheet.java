@@ -14,7 +14,15 @@ import co.edu.usbbog.moneybox.R;
 
 public class Bottom_sheet extends BottomSheetDialogFragment {
 
+    private final String baseURL = "http://localhost:3000/clasificacion";
+
+
+
     public Bottom_sheet() {
+    }
+
+    private void init() {
+
     }
 
 
@@ -23,7 +31,7 @@ public class Bottom_sheet extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.add_item, container, false);
-
+        
         return view;
 
     }

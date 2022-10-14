@@ -3,7 +3,6 @@ package co.edu.usbbog.moneybox.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,23 +20,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import co.edu.usbbog.moneybox.R;
-import co.edu.usbbog.moneybox.helperclasses.ApiClient;
-import co.edu.usbbog.moneybox.model.UsuariosDTO;
-import kotlin.jvm.Throws;
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class SingUp extends AppCompatActivity {
 
@@ -49,7 +37,7 @@ public class SingUp extends AppCompatActivity {
     RequestQueue requestQueue;
 
 
-    private final String baseUrl = "http://172.17.4.25:3000/usuarios";
+    private final String baseUrl = "http://192.168.0.2:3300/usuarios";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -72,7 +60,7 @@ public class SingUp extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         btnLogin.setOnClickListener((View vie) -> {
-            Intent i = new Intent(SingUp.this, login.class);
+            Intent i = new Intent(SingUp.this, Login.class);
             startActivity(i);
         });
 
@@ -253,5 +241,7 @@ public class SingUp extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
 
 }

@@ -14,6 +14,17 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/viewUSR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-5dp"
+            android:fontFamily="@font/outfit_mediumm"
+            android:gravity="left"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:layout_gravity="left"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -40,7 +51,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="290dp"
                 android:src="@drawable/mainingresos"
                 android:layout_marginTop="1dp"/>
 
@@ -67,7 +78,7 @@
                 app:startIconTint="#000">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtUser"
+                    android:id="@+id/edtGFI"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"/>

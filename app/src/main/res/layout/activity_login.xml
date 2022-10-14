@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
-    tools:context=".view.login">
+    tools:context=".view.Login">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                 app:startIconTint="#000">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtUser"
+                    android:id="@+id/edtUserlg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textAutoComplete"/>
@@ -93,7 +93,7 @@
                 app:startIconTint="#000">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtPass"
+                    android:id="@+id/edtPasslg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"/>
