@@ -74,8 +74,6 @@ public class Login extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        String nombre, usuario, clave;
-
 
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
@@ -88,7 +86,9 @@ public class Login extends AppCompatActivity {
                                         Toast.makeText(Login.this, "¡INICIO DE SESION EXITOSO!", Toast.LENGTH_SHORT).show();
                                         Intent j = new Intent(Login.this, Income_earn.class);
                                         String name = jsonObject.getString("nombre");
+                                        String usuario = jsonObject.getString("usuario");
                                         j.putExtra("nombre", name);
+                                        j.putExtra("usuario", usuario);
                                         startActivity(j);
                                     }
                                 }
