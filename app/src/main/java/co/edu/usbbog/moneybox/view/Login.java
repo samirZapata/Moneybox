@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,14 +26,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import co.edu.usbbog.moneybox.R;
+import co.edu.usbbog.moneybox.helperclasses.ConnAdapter;
 
 public class Login extends AppCompatActivity {
 
     Button btnSingup, btnLogin;
     EditText edtUser, edtPass;
     RequestQueue requestQueue;
+    TextView scope;
+    ConnAdapter conAux;
 
-    private final String baseUrl = "http://192.168.0.2:3000/";
+    //private final String baseUrl = conAux.ip();
+   private final String baseUrl = "http://172.20.10.4:3300/";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,6 +52,7 @@ public class Login extends AppCompatActivity {
         btnSingup = findViewById(R.id.btnSinUpLG);
         edtUser = findViewById(R.id.edtUserlg);
         edtPass = findViewById(R.id.edtPasslg);
+        scope = findViewById(R.id.scope);
 
 
         btnSingup.setOnClickListener((View view) -> {
@@ -56,6 +62,11 @@ public class Login extends AppCompatActivity {
 
         btnLogin.setOnClickListener((View view) -> {
             login(baseUrl);
+        });
+
+        scope.setOnClickListener(view -> {
+            String texto = "En esta entrega se mostrará el inicio de sesión y las \noperaciones básicas CRUD de usuarios de manera funcional. ";
+            scope.setText(texto);
         });
     }
 

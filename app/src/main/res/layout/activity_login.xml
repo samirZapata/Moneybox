@@ -19,6 +19,16 @@
 <!--            android:src="" />-->
 
         <TextView
+            android:id="@+id/scope"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_mediumm"
+            android:gravity="center"
+            android:text="Scope"
+            android:textColor="#75000000"
+            android:textSize="16dp" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="105dp"

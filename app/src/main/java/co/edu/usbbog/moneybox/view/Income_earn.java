@@ -27,7 +27,7 @@ import co.edu.usbbog.moneybox.R;
 
 public class Income_earn extends AppCompatActivity {
 
-    private final String baseUrl = "http://192.168.0.2:3000/ingresos";
+    private final String baseUrl = "http://172.20.10.4:3000/ingresos";
 
     Button btnGoDH;
     TextView viewUsuario;
@@ -52,15 +52,22 @@ public class Income_earn extends AppCompatActivity {
         //GET USER NAME
         i = getIntent();
         String user = i.getStringExtra("nombre");
+        String usuarioReal = i.getStringExtra("usuario");
         viewUsuario.setText("Hola, " + user);
 
         btnGoDH.setOnClickListener((View view) -> {
-            Intent i = new Intent(Income_earn.this, Dashboard.class);
+            Intent j = new Intent(Income_earn.this, Dashboard.class);
             String valor = edtGF.getText().toString();
-            i.putExtra("valor", valor);
-            i.putExtra("nombre", user);
+            j.putExtra("valor", valor);
+            j.putExtra("nombre", user);
             
-            IngresoMensual(baseUrl);
+           IngresoMensual(baseUrl);
+            startActivity(j);
+        });
+        
+        viewUsuario.setOnClickListener(view -> {
+            Intent i = new Intent(Income_earn.this, perfil.class);
+            i.putExtra("nombre", usuarioReal);
             startActivity(i);
         });
     }
@@ -86,6 +93,8 @@ public class Income_earn extends AppCompatActivity {
                 Map<String, String> parametros = new HashMap<String, String>();
                 String ig = edtGF.getText().toString();
 
+                Intent g;
+
                 i = getIntent();
                 String usuario = i.getStringExtra("usuario");
                 parametros.put("valor", ig);
@@ -97,7 +106,7 @@ public class Income_earn extends AppCompatActivity {
 
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
 
