@@ -1,10 +1,10 @@
 package co.edu.usbbog.moneybox.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -35,9 +35,11 @@ public class Login extends AppCompatActivity {
     RequestQueue requestQueue;
     TextView scope;
     ConnAdapter conAux;
+    SharedPreferences Income_earn;
 
     //private final String baseUrl = conAux.ip();
-   private final String baseUrl = "http://172.20.10.4:3300/";
+    private final String baseUrl = "http://192.168.0.2:3300/";
+    private final String getDepositURL = "http://192.168.0.2:3300/";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -61,7 +63,29 @@ public class Login extends AppCompatActivity {
         });
 
         btnLogin.setOnClickListener((View view) -> {
+
             login(baseUrl);
+
+//            new Handler().postDelayed(()->{
+//
+//            });
+
+//            Income_earn = getSharedPreferences("Income_earn", MODE_PRIVATE);
+//            boolean isFirstTime = Income_earn.getBoolean("firstTime", true);
+//
+//            if (isFirstTime) {
+//                SharedPreferences.Editor editor = Income_earn.edit();
+//                editor.putBoolean("firstTime", false);
+//                editor.commit();
+//
+//                Intent k = new Intent(this, Income_earn.class);
+//                startActivity(k);
+//            }
+//            else {
+//                getDeposit(getDepositURL);
+//                Intent l = new Intent(this, Dashboard.class);
+//                startActivity(l);
+//            }
         });
 
         scope.setOnClickListener(view -> {
@@ -98,8 +122,11 @@ public class Login extends AppCompatActivity {
                                         Intent j = new Intent(Login.this, Income_earn.class);
                                         String name = jsonObject.getString("nombre");
                                         String usuario = jsonObject.getString("usuario");
+                                        String id = jsonObject.getString("id");
+
                                         j.putExtra("nombre", name);
                                         j.putExtra("usuario", usuario);
+                                        j.putExtra("id", id);
                                         startActivity(j);
                                     }
                                 }
@@ -125,29 +152,60 @@ public class Login extends AppCompatActivity {
     }
 
 
-//    JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, response -> {
-//        JSONObject jsonObject;
-//        for (int i = 0; i < response.length(); i++) {
-//            try {
-//                jsonObject = (JSONObject) response.getJSONObject(i);
-//                if (edtUser.getText().toString().equals(jsonObject.getString("usuario")) && edtPass.getText().toString().equals(jsonObject.getString("clave"))) {
-//
-//                    Intent j = new Intent(Login.this, Income_earn.class);
-//                    j.putExtra("usuarios", jsonObject.getString("usuarios"));
-//                    j.putExtra("clave", jsonObject.getString("clave"));
-//                    startActivity(j);
-//                }
-//            } catch (JSONException e) {
-//                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-//                Log.e("Error", e.getMessage());
-//            }
-//        }
-//    }, error ->
-//            Toast.makeText(getApplicationContext(), "ERROR DE CONEXION",
-//                    Toast.LENGTH_SHORT).show()
-//    );
-//        requestQueue.add(jsonArrayRequest);
-//}
+    private void getDeposit(String URL) {
+
+        Intent ids;
+        ids = getIntent();
+        String id = ids.getStringExtra("id");
+        String depositID = "ingresos?usuario=" + id;
+
+        String url = URL + depositID;
+        Log.i("URL", url);
+        //Log.i("ID", id);
+
+        JsonObjectRequest depositRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("deposit");
+                            int size = jsonArray.length();
+
+                            for (int i = 0; i < size; i++) {
+                                JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
+                                if (jsonObject.getString("valor").equals(depositID)) {
+
+                                    Intent deposit;
+                                    deposit = null;
+                                    String valor = jsonObject.getString("valor");
+                                    deposit.putExtra("valor", valor);
+                                }
+                            }
+                        } catch (JSONException e) {
+
+                            System.out.println("ERROR: " + e.getMessage());
+                            e.printStackTrace();
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Login.this, "Error al cargar ingresos...", Toast.LENGTH_SHORT).show();
+                        System.out.println("----------------------------");
+                        System.out.println("ERROR: " + error.getMessage());
+                        System.out.println("----------------------------");
+                    }
+                });
+        requestQueue.add(depositRequest);
+
+    }
 
 
 }

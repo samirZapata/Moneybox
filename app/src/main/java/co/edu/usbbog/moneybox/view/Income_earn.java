@@ -1,9 +1,8 @@
 package co.edu.usbbog.moneybox.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,13 +11,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +33,7 @@ import co.edu.usbbog.moneybox.R;
 
 public class Income_earn extends AppCompatActivity {
 
-    private final String baseUrl = "http://172.20.10.4:3000/ingresos";
+    private final String baseUrl = "http://192.168.0.2:3300/ingresos";
 
     Button btnGoDH;
     TextView viewUsuario;
@@ -35,6 +41,7 @@ public class Income_earn extends AppCompatActivity {
 
     RequestQueue requestQueue;
     Intent i;
+    SharedPreferences Income_earn;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -53,24 +60,32 @@ public class Income_earn extends AppCompatActivity {
         i = getIntent();
         String user = i.getStringExtra("nombre");
         String usuarioReal = i.getStringExtra("usuario");
+        String id = i.getStringExtra("id");
         viewUsuario.setText("Hola, " + user);
+
+
+
+
 
         btnGoDH.setOnClickListener((View view) -> {
             Intent j = new Intent(Income_earn.this, Dashboard.class);
             String valor = edtGF.getText().toString();
             j.putExtra("valor", valor);
             j.putExtra("nombre", user);
-            
-           IngresoMensual(baseUrl);
+            j.putExtra("id", id);
+
+            IngresoMensual(baseUrl);
             startActivity(j);
         });
-        
+
         viewUsuario.setOnClickListener(view -> {
             Intent i = new Intent(Income_earn.this, perfil.class);
             i.putExtra("nombre", usuarioReal);
             startActivity(i);
         });
     }
+
+
 
 
     private void IngresoMensual(String baseUrl) {
@@ -96,12 +111,12 @@ public class Income_earn extends AppCompatActivity {
                 Intent g;
 
                 i = getIntent();
-                String usuario = i.getStringExtra("usuario");
+                String usuario = i.getStringExtra("id");
                 parametros.put("valor", ig);
                 parametros.put("usuario", usuario);
-                
+
                 Log.i("fsfsd", parametros.toString());
-                
+
                 return parametros;
 
             }
@@ -109,6 +124,8 @@ public class Income_earn extends AppCompatActivity {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
 
 
 }

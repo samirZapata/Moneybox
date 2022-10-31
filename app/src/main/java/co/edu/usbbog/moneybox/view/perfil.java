@@ -27,7 +27,7 @@ import java.util.Map;
 import co.edu.usbbog.moneybox.R;
 
 public class perfil extends AppCompatActivity {
-    private final String baseURL = "http://192.168.0.2:3300/";
+    private final String baseURL = "http://192.168.0.3:3300/";
 
     private EditText edtName;
     private EditText edtPhoneSG;

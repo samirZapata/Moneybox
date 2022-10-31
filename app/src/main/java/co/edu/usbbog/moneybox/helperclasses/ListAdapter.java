@@ -59,7 +59,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         }
         void bindData(final ListEmelemnt item){
             concepto.setText(item.getConcepto());
-            valor.setText(item.getValor());
+            valor.setText("$ "+item.getValor());
             fecha.setText(item.getFecha());
         }
 

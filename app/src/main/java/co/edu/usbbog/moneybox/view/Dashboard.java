@@ -44,15 +44,20 @@ public class Dashboard extends AppCompatActivity {
         i = getIntent();
         String usr = i.getStringExtra("nombre");
         String valor = i.getStringExtra("valor");
+        String id = i.getStringExtra("id");
         viewIngresos.setText(valor);
         viewUSR.setText("Hola, " + usr);
 
 
         bottomSheetDialog = new BottomSheetDialog(this);
+        //btnIF.setOnClickListener(view -> new Bottom_sheet().show(getSupportFragmentManager(),"Show"));
 
-        btnIF.setOnClickListener((View view) -> {
-            Bottom_sheet bottomSheet = new Bottom_sheet();
-            bottomSheet.show(getSupportFragmentManager(), "TAG");
+        btnIF.setOnClickListener((View v)->{
+           Intent i = new Intent(Dashboard.this, Input_Bill.class);
+           i.putExtra("nombre", usr);
+           i.putExtra("cash", valor);
+           i.putExtra("id", id);
+           startActivity(i);
         });
 
     }

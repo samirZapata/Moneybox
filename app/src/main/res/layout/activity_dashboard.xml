@@ -24,7 +24,6 @@
             android:layout_marginTop="105dp"
             android:fontFamily="@font/outfit_mediumm"
             android:gravity="left"
-            
             android:textColor="#000"
             android:textSize="20dp"
             android:layout_gravity="left"/>
