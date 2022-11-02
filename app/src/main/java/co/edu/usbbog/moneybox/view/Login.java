@@ -36,10 +36,11 @@ public class Login extends AppCompatActivity {
     TextView scope;
     ConnAdapter conAux;
     SharedPreferences Income_earn;
+    SharedPreferences onBoardingScreen;
 
     //private final String baseUrl = conAux.ip();
-    private final String baseUrl = "http://192.168.0.2:3300/";
-    private final String getDepositURL = "http://192.168.0.2:3300/";
+    private final String baseUrl = "http://192.168.0.6:3300/";
+    private final String getDepositURL = "http://192.168.0.6:3300/";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -65,6 +66,25 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener((View view) -> {
 
             login(baseUrl);
+
+
+            onBoardingScreen = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
+            boolean isFirstTime = onBoardingScreen.getBoolean("firstTime", true);
+
+            if (isFirstTime) {
+                SharedPreferences.Editor editor = onBoardingScreen.edit();
+                editor.putBoolean("firstTime", false);
+                editor.commit();
+
+                Intent i = new Intent(Login.this, Income_earn.class);
+                startActivity(i);
+                finish();
+            }
+            else {
+                Intent i = new Intent(Login.this, Income_earn.class);
+                startActivity(i);
+                finish();
+            }
 
 //            new Handler().postDelayed(()->{
 //

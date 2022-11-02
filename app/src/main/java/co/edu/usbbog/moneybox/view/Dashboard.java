@@ -1,10 +1,6 @@
 package co.edu.usbbog.moneybox.view;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.material.badge.BadgeUtils;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import co.edu.usbbog.moneybox.R;
-import co.edu.usbbog.moneybox.helperclasses.Bottom_sheet;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -52,12 +48,13 @@ public class Dashboard extends AppCompatActivity {
         bottomSheetDialog = new BottomSheetDialog(this);
         //btnIF.setOnClickListener(view -> new Bottom_sheet().show(getSupportFragmentManager(),"Show"));
 
-        btnIF.setOnClickListener((View v)->{
-           Intent i = new Intent(Dashboard.this, Input_Bill.class);
-           i.putExtra("nombre", usr);
-           i.putExtra("cash", valor);
-           i.putExtra("id", id);
-           startActivity(i);
+        btnIF.setOnClickListener((View v) -> {
+            Intent i = new Intent(Dashboard.this, Input_Bill.class);
+            i.putExtra("nombre", usr);
+            i.putExtra("cash", valor);
+            System.out.println("VALOR ENVIADO" + valor);
+            i.putExtra("id", id);
+            startActivity(i);
         });
 
     }

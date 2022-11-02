@@ -65,12 +65,9 @@ public class Presentation_screen extends AppCompatActivity {
                 Intent i = new Intent(Presentation_screen.this, Login.class);
                 startActivity(i);
                 finish();
-
             }
 
-
         }, SPLASH_SCREEN);
-
 
     }
 }

@@ -37,7 +37,7 @@ public class SingUp extends AppCompatActivity {
     RequestQueue requestQueue;
 
 
-    private final String baseUrl = "http://192.168.0.2:3300/usuarios";
+    private final String baseUrl = "http://192.168.0.6:3300/usuarios";
 
     @SuppressLint("MissingInflatedId")
     @Override

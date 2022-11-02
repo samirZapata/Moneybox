@@ -31,7 +31,7 @@ import co.edu.usbbog.moneybox.helperclasses.ListEmelemnt;
 
 public class Show_bills extends AppCompatActivity {
 
-    private final String baseUrl = "http://192.168.0.2:3300/";
+    private final String baseUrl = "http://192.168.0.6:3300/";
 
     TextView viewUser, viewBalance;
     List<ListEmelemnt> Lgastos;

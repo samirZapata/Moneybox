@@ -92,7 +92,7 @@
                     android:drawableTop="@drawable/wc"
                     android:gravity="bottom|left"
                     android:padding="30dp"
-                    android:text="Ocio &amp; \nPlacer"
+                    android:text="Ahorros"
                     android:textAllCaps="false"
                     app:cornerRadius="20dp" />
 
@@ -106,7 +106,7 @@
                     android:backgroundTint="#000"
                     android:gravity="center|left"
                     android:padding="30dp"
-                    android:text="Gastos \nFijos"
+                    android:text="Ingresar \nGastos"
                     android:textAllCaps="false"
                     app:cornerRadius="20dp" />
 
@@ -137,7 +137,7 @@
                     android:drawableTop="@drawable/gm"
                     android:gravity="bottom|left"
                     android:padding="30dp"
-                    android:text="Ahorro"
+                    android:text="Ver Gastos"
                     android:textAllCaps="false"
                     app:cornerRadius="20dp" />
             </RelativeLayout>

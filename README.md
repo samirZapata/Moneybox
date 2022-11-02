@@ -1,24 +1,22 @@
-# Save w' me
-Save w' me es una aplicación desarrollada con el fin de ser una herramienta que le permita al 
-usuario gestionar sus ingresos y gastos durante el mes, permitiéndole tener un mejor control 
-de sus finanzas personales y/o del hogar.
+# Moneybox
+Moneybox is an application developed in order to be a tool that allows the user to manage their income and 
+expenses during the month, allowing them to have a better control of their personal and/or home finances.
 
-## Ingresos
-En la aplicación podrá registrar su ingreso fijo mensual e ir agregando ingresos adicionales
-en caso de tenerlos
+## Income
+In the application you will be able to add additional income and add additional income at home to have them
 
-## Gastos
-El usuario podrá ingresar los gastos fijos y variables a medida que se presenten y la
-aplicación hará el cálculo automático del saldo restante.
+## Bills
+The user may enter the fixed and variable expenses as they are presented and the Application will make automatic 
+calculation of the remaining balance.
 
-## Tecnologías
+## Technologies
 BBDD → MARIA DB
 
 ## Mockup
-<img src="./description/mockups.png" width="200" />
+<img src="./description/mockups.png" width="1000" />
 
 
-# Contribuyentes
+# Contributors / DEVS
 Yonier Zapata → [@samirZapata](https://github.com/samirZapata)
 
 Michael González → [@miklegonza](https://github.com/miklegonza)

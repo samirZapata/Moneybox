@@ -26,7 +26,7 @@ import java.util.Map;
 import co.edu.usbbog.moneybox.R;
 
 public class Input_Bill extends AppCompatActivity {
-    private final String baseURL = "http://192.168.0.2:3300/gastos";
+    private final String baseURL = "http://192.168.0.6:3300/gastos";
 
     Intent i;
     TextView viewUser, viewCash;
@@ -53,21 +53,31 @@ public class Input_Bill extends AppCompatActivity {
         i = getIntent();
         String usr = i.getStringExtra("nombre");
         String cash = i.getStringExtra("cash");
+        System.out.println("VALOR RECIBIDO " + cash);
         String id = i.getStringExtra("id");
+
+
         viewUser.setText("Hola " + usr);
         viewCash.setText("$ " + cash);
         //END SHOW USER NAME 'N CASH
 
 
         //ACTION
-        btnIN.setOnClickListener((View v)->{
+        btnIN.setOnClickListener((View v) -> {
+
+            String valor = edtValor.getText().toString();
+            System.out.println(valor);
+            int val = Integer.parseInt(valor);
+
+            int gastadoF = Integer.parseInt(cash);
+            gastadoF = (val - gastadoF);
 
             Intent k = new Intent(Input_Bill.this, Show_bills.class);
 
             bills(baseURL);
             k.putExtra("id", id);
             k.putExtra("nombre", usr);
-            k.putExtra("cash", cash);
+            k.putExtra("cash", gastadoF);
             startActivity(k);
         });
 
@@ -78,22 +88,22 @@ public class Input_Bill extends AppCompatActivity {
 
         String concepto = edtGfijo.getText().toString();
         String periodo = edtPeriodo.getText().toString();
-        String  valor = edtValor.getText().toString();
+        String valor = edtValor.getText().toString();
 
         System.out.println("LO QUE OBTENGO");
-        Log.i("CONCEPTO", concepto+ "");
-        Log.i("PERIODO", periodo+ "");
-        Log.i("VALOR", valor+ "");
+        Log.i("CONCEPTO", concepto + "");
+        Log.i("PERIODO", periodo + "");
+        Log.i("VALOR", valor + "");
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 url,
                 new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(Input_Bill.this, "Se ha insertado", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(Input_Bill.this, "Se ha insertado", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //Toast.makeText(SingUp.this, error.toString(), Toast.LENGTH_SHORT).show();
@@ -102,8 +112,6 @@ public class Input_Bill extends AppCompatActivity {
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-
-
                 Map<String, String> params = new HashMap<String, String>();
 
                 Intent id;
@@ -119,10 +127,10 @@ public class Input_Bill extends AppCompatActivity {
                 id.putExtra("gasto", valor);
 
                 System.out.println("LO QUE SE ESTA ENVIANDO");
-                Log.i("CONCEPTO", concepto+ "");
-                Log.i("PERIODO", periodo+ "");
-                Log.i("VALOR", valor+ "");
-                Log.i("USUARIO & ORIGEN", ids+ "");
+                Log.i("CONCEPTO", concepto + "");
+                Log.i("PERIODO", periodo + "");
+                Log.i("VALOR", valor + "");
+                Log.i("USUARIO & ORIGEN", ids + "");
 
 
                 Log.i("fsfsd", params.toString());

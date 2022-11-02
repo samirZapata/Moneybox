@@ -33,7 +33,7 @@ import co.edu.usbbog.moneybox.R;
 
 public class Income_earn extends AppCompatActivity {
 
-    private final String baseUrl = "http://192.168.0.2:3300/ingresos";
+    private final String baseUrl = "http://192.168.0.6:3300/ingresos";
 
     Button btnGoDH;
     TextView viewUsuario;
