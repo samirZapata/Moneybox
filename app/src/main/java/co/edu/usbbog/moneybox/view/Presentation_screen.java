@@ -17,7 +17,7 @@ import co.edu.usbbog.moneybox.R;
 public class Presentation_screen extends AppCompatActivity {
 
 
-    private static final int SPLASH_SCREEN = 5000;
+    private static final int SPLASH_SCREEN = 3000;
 
     Animation topAnimation, bottomAnimation;
     ImageView img;

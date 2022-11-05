@@ -1,7 +1,6 @@
 package co.edu.usbbog.moneybox.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +10,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -26,49 +27,56 @@ import java.util.Map;
 
 import co.edu.usbbog.moneybox.R;
 
-public class perfil extends AppCompatActivity {
-    private final String baseURL = "http://192.168.0.3:3300/";
+public class EditProfile extends AppCompatActivity {
 
-    private EditText edtName;
-    private EditText edtPhoneSG;
-    private EditText edtEmailSG;
-    private Button btnBuscar;
-    private Button btnModificar;
-    private Button btnEliminar;
+    private final String baseURL = "http://192.168.0.6:3300/";
+    private EditText edtName, edtPhoneSG, edtEmailSG;
+    private Button btnEditar, btnEliminar;
 
-    private Intent intent;
-    private String usuario;
+    Intent intent;
+    String username;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.activity_edit_profile);
 
-        init();
-        listeners();
+        //HOOKS
+        edtName = findViewById(R.id.edtNameEP);
+        edtPhoneSG = findViewById(R.id.edtPhoneEP);
+        edtEmailSG = findViewById(R.id.edtEmailEP);
+        btnEditar = findViewById(R.id.btnEditar);
+        btnEliminar = findViewById(R.id.btnEliminar);
 
         intent = getIntent();
-        usuario = intent.getStringExtra("nombre");
+        username = intent.getStringExtra("usuario");
+
+
+        getData();
+        listeners();
+
     }
 
-    private void init() {
-        this.edtName = findViewById(R.id.edtName);
-        this.edtName.requestFocus();
-        this.edtPhoneSG = findViewById(R.id.edtPhoneSG);
-        this.edtEmailSG = findViewById(R.id.edtEmailSG);
-        this.btnBuscar = findViewById(R.id.btnBuscar);
-        this.btnModificar = findViewById(R.id.btnModificar);
-        this.btnEliminar = findViewById(R.id.btnEliminar);
+
+    private void getData() {
+        String name = intent.getStringExtra("nombre");
+        String phone = intent.getStringExtra("telefono");
+        String mail = intent.getStringExtra("email");
+
+        edtName.setText(name);
+        edtPhoneSG.setText(phone);
+        edtEmailSG.setText(mail);
     }
+
 
     private void listeners() {
-        this.btnBuscar.setOnClickListener(view -> {
-            buscar(usuario);
-        });
 
-        this.btnModificar.setOnClickListener(view -> {
+        buscar(username);
+
+        this.btnEditar.setOnClickListener(view -> {
             modificar(
-                    usuario,
+                    username,
                     edtName.getText().toString(),
                     edtPhoneSG.getText().toString(),
                     edtEmailSG.getText().toString()
@@ -76,12 +84,14 @@ public class perfil extends AppCompatActivity {
         });
 
         this.btnEliminar.setOnClickListener(view -> {
-            eliminar(usuario);
+            eliminar(username);
         });
     }
 
+
     private void buscar(String username) {
-        String uri = String.format(baseURL + "usuarios?username=%1$s", username);
+        String uri = String.format(baseURL + "usuarios?usuario=%1$s", username);
+        Log.i("URL", uri);
         Log.i("Usuario", username);
 
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, uri, null, response -> {
@@ -101,13 +111,12 @@ public class perfil extends AppCompatActivity {
             }
             hideKeyboard(this);
         }, error -> {
-            Toast.makeText(perfil.this, error.getMessage() + "", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditProfile.this, error.getMessage() + "", Toast.LENGTH_LONG).show();
             Log.e("nose", error + "");
         }) {
             protected Map<String, String> getParams() {
                 Map<String, String> query = new HashMap<>();
                 query.put("username", username);
-
                 return query;
             }
         };
@@ -118,13 +127,13 @@ public class perfil extends AppCompatActivity {
         String uri = String.format(baseURL + "usuarios/%1$s", username);
 
         StringRequest putRequest = new StringRequest(Request.Method.PUT, uri, response -> {
-            Toast.makeText(perfil.this, "Usuario modificado", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditProfile.this, "Usuario modificado", Toast.LENGTH_LONG).show();
             edtName.setText("");
             edtPhoneSG.setText("");
             edtEmailSG.setText("");
             hideKeyboard(this);
         }, error -> {
-            Toast.makeText(perfil.this, error.getMessage() + "", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditProfile.this, error.getMessage() + "", Toast.LENGTH_LONG).show();
         }) {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -138,17 +147,17 @@ public class perfil extends AppCompatActivity {
         Volley.newRequestQueue(this).add(putRequest);
     }
 
-    private void eliminar(String username) {
+        private void eliminar(String username) {
         String uri = String.format(baseURL + "usuarios/%1$s", username);
 
         StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, uri, response -> {
-            Toast.makeText(perfil.this, "Usuario eliminado", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditProfile.this, "Usuario eliminado", Toast.LENGTH_LONG).show();
             edtName.setText("");
             edtPhoneSG.setText("");
             edtEmailSG.setText("");
             hideKeyboard(this);
         }, error -> {
-            Toast.makeText(perfil.this, error.getMessage() + "", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditProfile.this, error.getMessage() + "", Toast.LENGTH_LONG).show();
         });
         Volley.newRequestQueue(this).add(deleteRequest);
     }
@@ -159,4 +168,5 @@ public class perfil extends AppCompatActivity {
         if (view == null) view = new View(activity);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
 }

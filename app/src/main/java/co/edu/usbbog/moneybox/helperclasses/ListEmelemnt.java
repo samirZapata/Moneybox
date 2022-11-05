@@ -7,15 +7,19 @@ public class ListEmelemnt {
     public String concepto;
     public String valor;
     public String fecha;
+    public String billT;
 
 
-    public ListEmelemnt(String color, String name, String concepto, String valor, String fecha) {
+    public ListEmelemnt(String color, String name, String concepto, String valor, String fecha, String billT) {
         this.color = color;
         this.name = name;
         this.concepto = concepto;
         this.valor = valor;
         this.fecha = fecha;
+        this.billT = billT;
     }
+
+
 
     public String getColor() {
         return color;
@@ -55,5 +59,16 @@ public class ListEmelemnt {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getBillT() {
+        return billT;
+    }
+
+    public void setBillT(String billT) {
+        this.billT = billT;
+    }
+
+    public ListEmelemnt(String dato) {
     }
 }

@@ -14,12 +14,19 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneybox"
         android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
+        <activity
+            android:name=".view.EditProfile"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".view.Input_Bill"
             android:exported="false">
@@ -28,7 +35,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.perfil"
+            android:name=".view.Perfil"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -96,6 +103,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

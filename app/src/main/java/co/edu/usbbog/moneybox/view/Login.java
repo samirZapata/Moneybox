@@ -68,23 +68,23 @@ public class Login extends AppCompatActivity {
             login(baseUrl);
 
 
-            onBoardingScreen = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
-            boolean isFirstTime = onBoardingScreen.getBoolean("firstTime", true);
-
-            if (isFirstTime) {
-                SharedPreferences.Editor editor = onBoardingScreen.edit();
-                editor.putBoolean("firstTime", false);
-                editor.commit();
-
-                Intent i = new Intent(Login.this, Income_earn.class);
-                startActivity(i);
-                finish();
-            }
-            else {
-                Intent i = new Intent(Login.this, Income_earn.class);
-                startActivity(i);
-                finish();
-            }
+//            onBoardingScreen = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
+//            boolean isFirstTime = onBoardingScreen.getBoolean("firstTime", true);
+//
+//            if (isFirstTime) {
+//                SharedPreferences.Editor editor = onBoardingScreen.edit();
+//                editor.putBoolean("firstTime", false);
+//                editor.commit();
+//
+//                Intent i = new Intent(Login.this, Income_earn.class);
+//                startActivity(i);
+//                finish();
+//            }
+//            else {
+//                Intent i = new Intent(Login.this, Income_earn.class);
+//                startActivity(i);
+//                finish();
+//            }
 
 //            new Handler().postDelayed(()->{
 //

@@ -46,26 +46,52 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/cardIcon">
 
-                <TextView
-                    android:id="@+id/viewConcepto"
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_semiboldd"
-                    android:gravity="left"
-                    android:text="Arriendo"
-                    android:textColor="#000"
-                    android:textSize="18dp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/viewConcepto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/montserrat_semiboldd"
+                        android:gravity="left"
+                        android:text="Arriendo"
+                        android:textColor="#000"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/viewBillT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_alignParentRight="true"
+                        android:paddingLeft="15dp"
+                        android:fontFamily="@font/montserrat_semiboldd"
+                        android:gravity="right"
+                        android:text="Gastos basicos"
+                        android:textColor="#DD5E5E5E"
+                        android:textSize="14dp"/>
+
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/viewValor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_semiboldd"
                     android:layout_marginTop="12dp"
+                    android:fontFamily="@font/work_sans_semibold"
                     android:gravity="left"
                     android:text="$900.000"
                     android:textColor="#000"
-                    android:textSize="15dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

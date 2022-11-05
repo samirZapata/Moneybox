@@ -16,8 +16,8 @@ import co.edu.usbbog.moneybox.R;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     public List<ListEmelemnt> mData;
-    private LayoutInflater mInflater;
-    private Context context;
+    private final LayoutInflater mInflater;
+    private final Context context;
 
     public ListAdapter(List<ListEmelemnt> itemList, Context context) {
         this.mInflater = LayoutInflater.from(context);
@@ -32,37 +32,42 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     @Override
-    public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.list_element, null);
         return new ListAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int positino){
+    public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int positino) {
+        holder.bindData(mData.get(positino));
+        holder.bindData(mData.get(positino));
+        holder.bindData(mData.get(positino));
         holder.bindData(mData.get(positino));
     }
 
-    public void setItems(List<ListEmelemnt> items){
-        mData=items;
+    public void setItems(List<ListEmelemnt> items) {
+        mData = items;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView cardIcon;
-        TextView concepto, valor, fecha;
+        TextView concepto, valor, fecha, billT;
 
-        ViewHolder(View itemView){
+        ViewHolder(View itemView) {
             super(itemView);
             cardIcon = itemView.findViewById(R.id.cardIcon);
             concepto = itemView.findViewById(R.id.viewConcepto);
             valor = itemView.findViewById(R.id.viewValor);
             fecha = itemView.findViewById(R.id.viewFecha);
+            billT = itemView.findViewById(R.id.viewBillT);
+
         }
-        void bindData(final ListEmelemnt item){
+
+        void bindData(final ListEmelemnt item) {
             concepto.setText(item.getConcepto());
-            valor.setText("$ "+item.getValor());
+            valor.setText("-" + item.getValor() + " $");
             fecha.setText(item.getFecha());
+            billT.setText(item.getBillT());
         }
-
     }
-
 }

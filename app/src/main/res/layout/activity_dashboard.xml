@@ -5,10 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:contentDescription="@string/app_name"
-    android:padding="30dp"
     tools:context=".view.Dashboard">
-
-
 
 
 
@@ -21,20 +18,70 @@
             android:id="@+id/viewUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/outfit_mediumm"
             android:gravity="left"
-            android:textColor="#000"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:textColor="#63000000"
+            android:text="Hola"
             android:textSize="20dp"
             android:layout_gravity="left"/>
+
+
         <TextView
+            android:id="@+id/viewB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_mediumm"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="50dp"
+            android:fontFamily="@font/outfit_mediumm"
             android:gravity="left"
-            android:text="Good, evening"
-            android:textColor="#75000000"
-            android:textSize="16dp" />
+            android:text="Tu balance"
+            android:textColor="#63000000"
+            android:textSize="15dp" />
+        <TextView
+            android:id="@+id/viewIngresos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="50dp"
+            android:fontFamily="@font/work_sans_semibold"
+            android:gravity="left"
+            android:text="$ 99.9999"
+            android:textColor="#000"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/viewE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="50dp"
+            android:fontFamily="@font/outfit_mediumm"
+            android:gravity="left"
+            android:text="Extra"
+            android:textColor="#63000000"
+            android:textSize="15dp" />
+        <TextView
+            android:id="@+id/viewInExtra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="50dp"
+            android:fontFamily="@font/work_sans_semibold"
+            android:gravity="left"
+            android:text="$ 0.00"
+            android:textColor="#000"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,25 +89,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/viewIngresos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:fontFamily="@font/outfit_mediumm"
-                android:gravity="center"
-                android:text="$ 1.200.000"
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:layout_gravity="left"/>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
                 android:fontFamily="@font/outfit_mediumm"
                 android:gravity="left"
-                android:text="Registra tus gastos mensuales"
+                android:text="Registra tus operaciones diarias"
                 android:textColor="#000"
                 android:textSize="20dp"
                 android:layout_gravity="left"/>
@@ -69,7 +104,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_mediumm"
                 android:gravity="left"
-                android:text="Gestiona tu dinero"
+                android:layout_marginLeft="10dp"
+                android:text="Administra tu dinero"
                 android:textColor="#75000000"
                 android:textSize="16dp" />
 
@@ -78,7 +114,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:gravity="center"
+                android:layout_marginTop="50dp">
 
                 <Button
                     android:id="@+id/btnOP"
@@ -86,10 +123,12 @@
                     android:layout_height="149dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="-1dp"
+                    android:layout_marginStart="-5dp"
                     android:layout_marginBottom="16dp"
-                    android:backgroundTint="#000"
-                    android:drawableTop="@drawable/wc"
+                    android:backgroundTint="#FFF9F2"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+
                     android:gravity="bottom|left"
                     android:padding="30dp"
                     android:text="Ahorros"
@@ -100,14 +139,16 @@
                     android:id="@+id/btnGF"
                     android:layout_width="149dp"
                     android:layout_height="149dp"
-                    android:layout_marginStart="-1dp"
+                    android:layout_marginStart="-5dp"
                     android:layout_marginEnd="36dp"
                     android:layout_marginBottom="150dp"
-                    android:backgroundTint="#000"
+                    android:backgroundTint="#F6F5FE"
                     android:gravity="center|left"
                     android:padding="30dp"
+                    android:textColor="#000"
                     android:text="Ingresar \nGastos"
                     android:textAllCaps="false"
+                    android:textSize="18dp"
                     app:cornerRadius="20dp" />
 
                 <Button
@@ -116,28 +157,31 @@
                     android:layout_height="149dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="191dp"
+                    android:layout_marginStart="180dp"
                     android:layout_marginBottom="7dp"
-                    android:backgroundTint="#000"
-                    android:drawableTop="@drawable/gm"
+                    android:backgroundTint="#F3F4F6"
+
                     android:gravity="bottom|left"
                     android:padding="30dp"
                     android:text="Ingreso \nExtra"
+                    android:textColor="#000"
+                    android:textSize="18dp"
                     app:cornerRadius="20dp"
                     android:textAllCaps="false" />
 
                 <Button
-                    android:id="@+id/btnAH"
+                    android:id="@+id/btnVG"
                     android:layout_width="149dp"
                     android:layout_height="149dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="180dp"
                     android:layout_marginEnd="2dp"
                     android:layout_marginBottom="150dp"
-                    android:backgroundTint="#000"
-                    android:drawableTop="@drawable/gm"
+                    android:backgroundTint="#DAEADA"
+                    android:textColor="#000"
                     android:gravity="bottom|left"
                     android:padding="30dp"
                     android:text="Ver Gastos"
+                    android:textSize="18dp"
                     android:textAllCaps="false"
                     app:cornerRadius="20dp" />
             </RelativeLayout>
@@ -145,6 +189,26 @@
         </LinearLayout>
 
 
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+
+<!--            <com.ismaeldivita.chipnavigation.ChipNavigationBar-->
+<!--                android:id="@+id/bottom_nav_menu"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cnb_menuResource="@menu/bottom_nav_menu"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:background="@drawable/round_corners"-->
+<!--                app:cnb_unselectedColor="@color/black"-->
+<!--                app:cnb_radius="8dp"-->
+<!--                app:cnb_orientationMode="horizontal"-->
+<!--                android:layout_margin="30dp"-->
+<!--                android:elevation="8dp"-->
+<!--                tools:ignore="MissingClass" />-->
+
+<!--        </RelativeLayout>-->
 
 
     </LinearLayout>
