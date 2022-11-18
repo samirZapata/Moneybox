@@ -8,7 +8,6 @@
     tools:context=".view.Dashboard">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,69 +17,149 @@
             android:id="@+id/viewUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/outfit_mediumm"
             android:gravity="left"
-            android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:textColor="#63000000"
             android:text="Hola"
-            android:textSize="20dp"
-            android:layout_gravity="left"/>
-
-
-        <TextView
-            android:id="@+id/viewB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="50dp"
-            android:fontFamily="@font/outfit_mediumm"
-            android:gravity="left"
-            android:text="Tu balance"
             android:textColor="#63000000"
-            android:textSize="15dp" />
-        <TextView
-            android:id="@+id/viewIngresos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="50dp"
-            android:fontFamily="@font/work_sans_semibold"
-            android:gravity="left"
-            android:text="$ 99.9999"
-            android:textColor="#000"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/viewE"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="50dp"
-            android:fontFamily="@font/outfit_mediumm"
-            android:gravity="left"
-            android:text="Extra"
-            android:textColor="#63000000"
-            android:textSize="15dp" />
-        <TextView
-            android:id="@+id/viewInExtra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="50dp"
-            android:fontFamily="@font/work_sans_semibold"
-            android:gravity="left"
-            android:text="$ 0.00"
-            android:textColor="#000"
-            android:textSize="30dp"
-            android:textStyle="bold" />
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="365dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#fff"
+            android:padding="29dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="15dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/App"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="29dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_mediumm"
+                    android:gravity="left"
+                    android:text="Moneybox"
+                    android:textColor="#000"
+                    android:textSize="20dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/viewBB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/montserrat_mediumm"
+                        android:gravity="left"
+                        android:text="Tu balance"
+                        android:textColor="#000"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/viewIngresos"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="50dp"
+                        android:fontFamily="@font/work_sans_semibold"
+                        android:gravity="right"
+                        android:text="$ 99.9999"
+                        android:textColor="#000"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/cardNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="29dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/montserrat_mediumm"
+                    android:gravity="left"
+                    android:text="0123 4567 8910 1112"
+                    android:textColor="#000"
+                    android:textSize="18dp" />
+
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginRight="60dp"
+                    android:src="@drawable/card_symbol" />
+            </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/viewB"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginRight="50dp"-->
+<!--            android:fontFamily="@font/outfit_mediumm"-->
+<!--            android:gravity="left"-->
+<!--            android:text="Tu balance"-->
+<!--            android:textColor="#63000000"-->
+<!--            android:textSize="15dp" />-->
+
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/viewE"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginRight="50dp"-->
+<!--            android:fontFamily="@font/outfit_mediumm"-->
+<!--            android:gravity="left"-->
+<!--            android:text="Extra"-->
+<!--            android:textColor="#63000000"-->
+<!--            android:textSize="15dp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/viewInExtra"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="3dp"-->
+<!--            android:layout_marginRight="50dp"-->
+<!--            android:fontFamily="@font/work_sans_semibold"-->
+<!--            android:gravity="left"-->
+<!--            android:text="$ 0.00"-->
+<!--            android:textColor="#000"-->
+<!--            android:textSize="30dp"-->
+<!--            android:textStyle="bold" />-->
 
 
         <LinearLayout
@@ -91,34 +170,34 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_gravity="left"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/outfit_mediumm"
                 android:gravity="left"
                 android:text="Registra tus operaciones diarias"
                 android:textColor="#000"
-                android:textSize="20dp"
-                android:layout_gravity="left"/>
+                android:textSize="20dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:fontFamily="@font/montserrat_mediumm"
                 android:gravity="left"
-                android:layout_marginLeft="10dp"
                 android:text="Administra tu dinero"
                 android:textColor="#75000000"
                 android:textSize="16dp" />
 
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="50dp">
+                android:layout_marginTop="50dp"
+                android:gravity="center">
 
                 <Button
-                    android:id="@+id/btnOP"
+                    android:id="@+id/btnAH"
                     android:layout_width="149dp"
                     android:layout_height="149dp"
                     android:layout_alignParentStart="true"
@@ -126,13 +205,13 @@
                     android:layout_marginStart="-5dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#FFF9F2"
-                    android:textColor="#000"
-                    android:textSize="18dp"
-
                     android:gravity="bottom|left"
                     android:padding="30dp"
+
                     android:text="Ahorros"
                     android:textAllCaps="false"
+                    android:textColor="#000"
+                    android:textSize="18dp"
                     app:cornerRadius="20dp" />
 
                 <Button
@@ -145,9 +224,9 @@
                     android:backgroundTint="#F6F5FE"
                     android:gravity="center|left"
                     android:padding="30dp"
-                    android:textColor="#000"
                     android:text="Ingresar \nGastos"
                     android:textAllCaps="false"
+                    android:textColor="#000"
                     android:textSize="18dp"
                     app:cornerRadius="20dp" />
 
@@ -164,10 +243,10 @@
                     android:gravity="bottom|left"
                     android:padding="30dp"
                     android:text="Ingreso \nExtra"
+                    android:textAllCaps="false"
                     android:textColor="#000"
                     android:textSize="18dp"
-                    app:cornerRadius="20dp"
-                    android:textAllCaps="false" />
+                    app:cornerRadius="20dp" />
 
                 <Button
                     android:id="@+id/btnVG"
@@ -177,38 +256,38 @@
                     android:layout_marginEnd="2dp"
                     android:layout_marginBottom="150dp"
                     android:backgroundTint="#DAEADA"
-                    android:textColor="#000"
                     android:gravity="bottom|left"
                     android:padding="30dp"
                     android:text="Ver Gastos"
-                    android:textSize="18dp"
                     android:textAllCaps="false"
+                    android:textColor="#000"
+                    android:textSize="18dp"
                     app:cornerRadius="20dp" />
             </RelativeLayout>
 
         </LinearLayout>
 
 
-<!--        <RelativeLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
+        <!--        <RelativeLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent">-->
 
 
-<!--            <com.ismaeldivita.chipnavigation.ChipNavigationBar-->
-<!--                android:id="@+id/bottom_nav_menu"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:cnb_menuResource="@menu/bottom_nav_menu"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                android:background="@drawable/round_corners"-->
-<!--                app:cnb_unselectedColor="@color/black"-->
-<!--                app:cnb_radius="8dp"-->
-<!--                app:cnb_orientationMode="horizontal"-->
-<!--                android:layout_margin="30dp"-->
-<!--                android:elevation="8dp"-->
-<!--                tools:ignore="MissingClass" />-->
+        <!--            <com.ismaeldivita.chipnavigation.ChipNavigationBar-->
+        <!--                android:id="@+id/bottom_nav_menu"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:cnb_menuResource="@menu/bottom_nav_menu"-->
+        <!--                android:layout_alignParentBottom="true"-->
+        <!--                android:background="@drawable/round_corners"-->
+        <!--                app:cnb_unselectedColor="@color/black"-->
+        <!--                app:cnb_radius="8dp"-->
+        <!--                app:cnb_orientationMode="horizontal"-->
+        <!--                android:layout_margin="30dp"-->
+        <!--                android:elevation="8dp"-->
+        <!--                tools:ignore="MissingClass" />-->
 
-<!--        </RelativeLayout>-->
+        <!--        </RelativeLayout>-->
 
 
     </LinearLayout>

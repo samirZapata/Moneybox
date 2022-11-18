@@ -28,7 +28,8 @@ import co.edu.usbbog.moneybox.R;
 
 public class Income_earn extends AppCompatActivity {
 
-    private final String baseUrl = "http://192.168.0.6:3300/ingresos";
+    private final String usbURl = "http://172.17.3.114:3300/ingresos";
+    private final String baseUrl = "http://172.17.3.114:3300/ingresos";
 
     Button btnGoDH;
     TextView viewUsuario;
@@ -37,6 +38,8 @@ public class Income_earn extends AppCompatActivity {
     RequestQueue requestQueue;
     Intent i;
     SharedPreferences Income_earn;
+    String nombre, usuario, id;
+    //String userPrefer, name, ID;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -53,21 +56,24 @@ public class Income_earn extends AppCompatActivity {
 
         //GET USER NAME
         i = getIntent();
-        String user = i.getStringExtra("nombre");
-        String usuarioReal = i.getStringExtra("usuario");
-        String id = i.getStringExtra("id");
-        viewUsuario.setText("Hola, " + user);
+        nombre = i.getStringExtra("nombre");
+        usuario = i.getStringExtra("usuario");
+        id = i.getStringExtra("id");
+        viewUsuario.setText("Hola, " + nombre);
 
 
-
+//        SharedPreferences objectsPrefer = getSharedPreferences("objects", MODE_PRIVATE);
+//        ID = objectsPrefer.getString("id", "");
+//        name = objectsPrefer.getString("name", "");
+//        userPrefer = objectsPrefer.getString("usuario", "");
 
 
         btnGoDH.setOnClickListener((View view) -> {
             Intent j = new Intent(Income_earn.this, Dashboard.class);
             String valor = edtGF.getText().toString();
             j.putExtra("valor", valor);
-            j.putExtra("nombre", user);
-            j.putExtra("usuario", usuarioReal);
+            j.putExtra("nombre", nombre);
+            j.putExtra("usuario", usuario);
             j.putExtra("id", id);
 
             IngresoMensual(baseUrl);
@@ -76,24 +82,21 @@ public class Income_earn extends AppCompatActivity {
 
         viewUsuario.setOnClickListener(view -> {
             Intent i = new Intent(Income_earn.this, Perfil.class);
-            i.putExtra("nombre", usuarioReal);
+            i.putExtra("nombre", usuario);
             startActivity(i);
         });
     }
-
-
 
 
     private void IngresoMensual(String baseUrl) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(Income_earn.this, "Se ha insertado", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Income_earn.this, "Se ha insertado", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Toast.makeText(SingUp.this, error.toString(), Toast.LENGTH_SHORT).show();
                 Log.e("error", error + "");
             }
         }) {
@@ -102,16 +105,18 @@ public class Income_earn extends AppCompatActivity {
 
 
                 Map<String, String> parametros = new HashMap<String, String>();
-                String ig = edtGF.getText().toString();
+                String valor = edtGF.getText().toString();
 
                 Intent g;
 
-                i = getIntent();
-                String usuario = i.getStringExtra("id");
-                parametros.put("valor", ig);
-                parametros.put("usuario", usuario);
+//                i = getIntent();
+//                String usuario = i.getStringExtra("id");
+                parametros.put("valor", valor);
+                parametros.put("usuario", id);
+                parametros.put("username", usuario);
 
-                Log.i("fsfsd", parametros.toString());
+
+                Log.i("PARAMETROS ", parametros.toString());
 
                 return parametros;
 
@@ -120,8 +125,6 @@ public class Income_earn extends AppCompatActivity {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
-
 
 
 }

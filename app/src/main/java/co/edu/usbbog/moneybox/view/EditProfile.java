@@ -29,7 +29,7 @@ import co.edu.usbbog.moneybox.R;
 
 public class EditProfile extends AppCompatActivity {
 
-    private final String baseURL = "http://192.168.0.6:3300/";
+    private final String baseURL = "http://1172.17.3.114:3300/";
     private EditText edtName, edtPhoneSG, edtEmailSG;
     private Button btnEditar, btnEliminar;
 

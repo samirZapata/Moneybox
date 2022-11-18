@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +26,7 @@ import org.json.JSONObject;
 
 import co.edu.usbbog.moneybox.R;
 import co.edu.usbbog.moneybox.helperclasses.ConnAdapter;
+import co.edu.usbbog.moneybox.model.UsuariosDTO;
 
 public class Login extends AppCompatActivity {
 
@@ -37,9 +37,13 @@ public class Login extends AppCompatActivity {
     ConnAdapter conAux;
     SharedPreferences Income_earn;
     SharedPreferences onBoardingScreen;
+    UsuariosDTO objectDto;
+    Intent j;
 
     //private final String baseUrl = conAux.ip();
-    private final String baseUrl = "http://192.168.0.6:3300/";
+
+    private final String usbURl = "http://172.17.3.114:3300/";
+    private final String baseUrl = "http://172.17.3.114:3300/";
     private final String getDepositURL = "http://192.168.0.6:3300/";
 
     @SuppressLint("MissingInflatedId")
@@ -56,6 +60,7 @@ public class Login extends AppCompatActivity {
         edtUser = findViewById(R.id.edtUserlg);
         edtPass = findViewById(R.id.edtPasslg);
         scope = findViewById(R.id.scope);
+        objectDto = new UsuariosDTO();
 
 
         btnSingup.setOnClickListener((View view) -> {
@@ -63,49 +68,32 @@ public class Login extends AppCompatActivity {
             startActivity(i);
         });
 
+        //DECLARE OBJECT TO IDENTIFY IF THE USER USE THE APP FOR FIRST TIME OF SECOND TIME
+        /*SHAREDPREFERENCES SAVE A VARIABLE IN THE LOCAL STORAGE WITH ALL DATA IN THIS VARIABLE, BEFORE
+        * I CAN GET THIS VARIABLE IN ANY ACTIVITY, SINCE THE DATA ARE PERSINTENCY WE HAVE TO REMOVE THEM WHEN
+        * THEY AREN'T NECESSARY */
+
+//        onBoardingScreen = getSharedPreferences("loginToDash", MODE_PRIVATE);
+//        boolean isFirstTime = onBoardingScreen.getBoolean("firstTime", true);
+
         btnLogin.setOnClickListener((View view) -> {
-
             login(baseUrl);
-
-
-//            onBoardingScreen = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
-//            boolean isFirstTime = onBoardingScreen.getBoolean("firstTime", true);
-//
 //            if (isFirstTime) {
 //                SharedPreferences.Editor editor = onBoardingScreen.edit();
 //                editor.putBoolean("firstTime", false);
 //                editor.commit();
 //
-//                Intent i = new Intent(Login.this, Income_earn.class);
+
 //                startActivity(i);
 //                finish();
 //            }
 //            else {
-//                Intent i = new Intent(Login.this, Income_earn.class);
+//                Intent i = new Intent(Login.this, Dashboard.class);
+//                getDeposit(baseUrl);
 //                startActivity(i);
 //                finish();
 //            }
 
-//            new Handler().postDelayed(()->{
-//
-//            });
-
-//            Income_earn = getSharedPreferences("Income_earn", MODE_PRIVATE);
-//            boolean isFirstTime = Income_earn.getBoolean("firstTime", true);
-//
-//            if (isFirstTime) {
-//                SharedPreferences.Editor editor = Income_earn.edit();
-//                editor.putBoolean("firstTime", false);
-//                editor.commit();
-//
-//                Intent k = new Intent(this, Income_earn.class);
-//                startActivity(k);
-//            }
-//            else {
-//                getDeposit(getDepositURL);
-//                Intent l = new Intent(this, Dashboard.class);
-//                startActivity(l);
-//            }
         });
 
         scope.setOnClickListener(view -> {
@@ -138,16 +126,31 @@ public class Login extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
                                 if (jsonObject.getString("usuario").equals(edtUser.getText().toString())) {
                                     if (jsonObject.getString("clave").equals(edtPass.getText().toString())) {
-                                        Toast.makeText(Login.this, "¡INICIO DE SESION EXITOSO!", Toast.LENGTH_SHORT).show();
-                                        Intent j = new Intent(Login.this, Income_earn.class);
+
+                                        //= new Intent(Login.this, Income_earn.class);
                                         String name = jsonObject.getString("nombre");
                                         String usuario = jsonObject.getString("usuario");
                                         String id = jsonObject.getString("id");
+                                        //Toast.makeText(Login.this, "¡Bienvenido! " + name, Toast.LENGTH_SHORT).show();
+
+                                        // --> STORING USER DATA WITH SHARED PREFERENCES
+//                                        SharedPreferences idPrefer = getSharedPreferences("objects", MODE_PRIVATE);
+//                                        SharedPreferences.Editor objectEditor = idPrefer.edit();
+//                                        objectEditor.putString("objectId", id);
+//                                        objectEditor.putString("name", name);
+//                                        objectEditor.putString("usuario", usuario);
+//                                        objectEditor.commit();
+//                                        objectEditor.remove("objects");
+
+                                        j = new Intent(Login.this, Income_earn.class);
 
                                         j.putExtra("nombre", name);
                                         j.putExtra("usuario", usuario);
                                         j.putExtra("id", id);
                                         startActivity(j);
+                                        finish();
+                                    }else{
+                                        Toast.makeText(Login.this, "¡Usuario o contraseña incorrectos!", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }
@@ -172,60 +175,77 @@ public class Login extends AppCompatActivity {
     }
 
 
-    private void getDeposit(String URL) {
-
-        Intent ids;
-        ids = getIntent();
-        String id = ids.getStringExtra("id");
-        String depositID = "ingresos?usuario=" + id;
-
-        String url = URL + depositID;
-        Log.i("URL", url);
-        //Log.i("ID", id);
-
-        JsonObjectRequest depositRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                url,
-                null,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("deposit");
-                            int size = jsonArray.length();
-
-                            for (int i = 0; i < size; i++) {
-                                JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
-                                if (jsonObject.getString("valor").equals(depositID)) {
-
-                                    Intent deposit;
-                                    deposit = null;
-                                    String valor = jsonObject.getString("valor");
-                                    deposit.putExtra("valor", valor);
-                                }
-                            }
-                        } catch (JSONException e) {
-
-                            System.out.println("ERROR: " + e.getMessage());
-                            e.printStackTrace();
-
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Login.this, "Error al cargar ingresos...", Toast.LENGTH_SHORT).show();
-                        System.out.println("----------------------------");
-                        System.out.println("ERROR: " + error.getMessage());
-                        System.out.println("----------------------------");
-                    }
-                });
-        requestQueue.add(depositRequest);
-
-    }
+//    private void getDeposit(String URL) {
+//
+//        // --> GETTING USER DATA FROM LOCAL STORAGE
+//        SharedPreferences objectsPrefer = getSharedPreferences("objects", MODE_PRIVATE);
+//        String ID = objectsPrefer.getString("objectId", "");
+//        String name = objectsPrefer.getString("name", "");
+//        String userPrefer = objectsPrefer.getString("usuario", "");
+//        SharedPreferences.Editor objectsEditor = objectsPrefer.edit();
+//        objectsEditor.commit();
+//        objectsEditor.remove("objects");
+//
+//
+////        Intent ids;
+////        ids = getIntent();
+////        String id = ids.getStringExtra("objectId");
+//        String depositID = "ingresos?username=" + userPrefer;
+//
+//        String url = URL + depositID;
+//        Log.i("URL", url);
+//
+//        JsonObjectRequest depositRequest = new JsonObjectRequest(
+//                Request.Method.GET,
+//                url,
+//                null,
+//                new Response.Listener<JSONObject>() {
+//
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//
+//                        try {
+//                            JSONArray jsonArray = response.getJSONArray("data");
+//                            int size = jsonArray.length();
+//
+//                            for (int i = 0; i < size; i++) {
+//                                JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
+//                                if (jsonObject.getString("valor") != null) {
+//
+//                                    String valor = jsonObject.getString("valor");
+//
+//                                    // --> STORING USER BALANCE
+//                                    SharedPreferences idPrefer = getSharedPreferences("objectBalance", MODE_PRIVATE);
+//                                    SharedPreferences.Editor objectEditor = idPrefer.edit();
+//                                    objectEditor.putString("mainBalance", valor);
+//                                    objectEditor.commit();
+//                                    objectEditor.remove("mainBalance");
+//
+////                                    Intent deposit = new Intent();
+////                                    //assert deposit != null;
+////                                    deposit.putExtra("balance", valor);
+//                                }
+//                            }
+//                        } catch (JSONException e) {
+//
+//                            System.out.println("ERROR: " + e.getMessage());
+//                            e.printStackTrace();
+//
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(Login.this, "Error al cargar ingresos...", Toast.LENGTH_SHORT).show();
+//                        System.out.println("----------------------------");
+//                        System.out.println("ERROR: " + error.getMessage());
+//                        System.out.println("----------------------------");
+//                    }
+//                });
+//        requestQueue.add(depositRequest);
+//
+//    }
 
 
 }

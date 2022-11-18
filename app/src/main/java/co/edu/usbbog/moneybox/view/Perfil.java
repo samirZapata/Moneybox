@@ -29,7 +29,7 @@ import java.util.Map;
 import co.edu.usbbog.moneybox.R;
 
 public class Perfil extends AppCompatActivity {
-    private final String baseURL = "http://192.168.0.6:3300/";
+    private final String baseURL = "http://172.17.3.114:3300/";
 
     private EditText edtName;
     private EditText edtPhoneSG;
@@ -60,7 +60,6 @@ public class Perfil extends AppCompatActivity {
         btnModificar = findViewById(R.id.btnModificar);
         btnEliminar = findViewById(R.id.btnEliminarAC);
 
-        init();
         listeners();
 
         intent = getIntent();
@@ -83,16 +82,6 @@ public class Perfil extends AppCompatActivity {
 
     }
 
-    private void init() {
-//        this.edtName = findViewById(R.id.edtName);
-//        //this.edtName.requestFocus();
-//        this.edtPhoneSG = findViewById(R.id.edtPhoneSG);
-//        this.edtEmailSG = findViewById(R.id.edtEmailSG);
-//        //this.btnBuscar = findViewById(R.id.btnBuscar);
-//        this.btnModificar = findViewById(R.id.btnModificar);
-//        //this.btnEliminar = findViewById(R.id.btnEliminar);
-
-    }
 
     public static String Nchar(String str, int n) {
         if (str == null) {
@@ -102,19 +91,7 @@ public class Perfil extends AppCompatActivity {
     }
 
     private void listeners() {
-//        this.btnBuscar.setOnClickListener(view -> {
-//            buscar(usuario);
-//        });
 
-//        this.btnModificar.setOnClickListener(view -> {
-//            modificar(
-//                    usuario,
-//                    edtName.getText().toString(),
-//                    edtPhoneSG.getText().toString(),
-//                    edtEmailSG.getText().toString()
-//            );
-//        });
-//
         this.btnEliminar.setOnClickListener(view -> {
             eliminar(usuario);
         });

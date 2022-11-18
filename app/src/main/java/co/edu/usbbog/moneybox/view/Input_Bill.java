@@ -3,6 +3,7 @@ package co.edu.usbbog.moneybox.view;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -28,7 +30,8 @@ import java.util.Map;
 import co.edu.usbbog.moneybox.R;
 
 public class Input_Bill extends AppCompatActivity {
-    private final String baseURL = "http://192.168.0.6:3300/gastos";
+    private final String baseURL = "http://172.17.3.114:3300/gastos";
+    private final String usbURL = "http://172.17.3.114:3300/";
 
     Intent i;
     TextView viewUser, viewCash;
@@ -36,6 +39,8 @@ public class Input_Bill extends AppCompatActivity {
     RequestQueue requestQueue;
     Button btnIN;
     AutoCompleteTextView billType;
+
+    String cash;
 
     @SuppressLint({"MissingInflatedId", "LongLogTag"})
     @Override
@@ -49,15 +54,13 @@ public class Input_Bill extends AppCompatActivity {
         edtPeriodo = findViewById(R.id.edtPeriodo);
         edtValor = findViewById(R.id.edtValor);
         billType = findViewById(R.id.billType);
+        viewCash = findViewById(R.id.n);
         requestQueue = Volley.newRequestQueue(this);
 
         /*---------------------------------------------------------------------*/
-        //START SHOW USER NAME 'N CASH
-        viewCash = findViewById(R.id.n);
-//        viewUser = findViewById(R.id.viewUserNameBills);
         i = getIntent();
         String usr = i.getStringExtra("nombre");
-        String cash = i.getStringExtra("cash");
+        cash = i.getStringExtra("cash");
         System.out.println("VALOR RECIBIDO " + cash);
         String id = i.getStringExtra("id");
 
@@ -90,9 +93,9 @@ public class Input_Bill extends AppCompatActivity {
             String valor = edtValor.getText().toString();
             System.out.println(valor);
             int val = Integer.parseInt(valor);
+            int balance = Integer.parseInt(cash);
 
-//            int gastadoF = Integer.parseInt(cash);
-//            gastadoF = (val - gastadoF);
+            int total = (balance - val);
 
             Intent k = new Intent(Input_Bill.this, Show_bills.class);
 
@@ -101,9 +104,11 @@ public class Input_Bill extends AppCompatActivity {
             k.putExtra("nombre", usr);
             k.putExtra("cash", cash);
             k.putExtra("gastado", val);
+            k.putExtra("total", total + "");
             Log.i("CASH QUE SE MANDA A SHOW BILLS ", cash + "");
             Log.i("GASTO QUE SE MANDA A SHOW BILLS ", val + "");
             startActivity(k);
+            finish();
         });
 
 //        billType.setOnClickListener(new AdapterView.OnItemClickListener() {
@@ -140,7 +145,6 @@ public class Input_Bill extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Toast.makeText(SingUp.this, error.toString(), Toast.LENGTH_SHORT).show();
                 Log.e("error", error + "");
             }
         }) {
@@ -152,6 +156,7 @@ public class Input_Bill extends AppCompatActivity {
                 id = getIntent();
                 String ids = id.getStringExtra("id");
                 String origen = "1"; //id.getStringExtra("is");
+
                 params.put("gasto", concepto);
                 params.put("fecha", periodo);
                 params.put("valor", valor);
@@ -178,6 +183,21 @@ public class Input_Bill extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+
+    private void updateBill() {
+        i = getIntent();
+        String saldo = i.getStringExtra("saldo");
+        viewCash.setText("$ " + saldo);
+    }
+
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        i = getIntent();
+//        String saldo = i.getStringExtra("saldo");
+//        viewCash.setText("$ " + saldo);
+//    }
 
     private void clean() {
         edtGfijo.setText("");

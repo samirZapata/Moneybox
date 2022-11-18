@@ -4,7 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ViewGroup;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import co.edu.usbbog.moneybox.R;
@@ -33,14 +33,19 @@ import co.edu.usbbog.moneybox.helperclasses.ListEmelemnt;
 
 public class Show_bills extends AppCompatActivity {
 
-    private final String baseUrl = "http://192.168.0.6:3300/";
+    private final String baseUrl = "http://172.17.3.114:3300/";
+    private final String usbURL = "http://172.17.3.114:3300/";
 
-    TextView viewBill, viewBalance;
+
+    TextView viewCash, viewBillless, viewTotal;
     List<ListEmelemnt> Lgastos;
     RecyclerView ListaGastos;
     RequestQueue requestQueue;
-    Intent id;
+    Intent id, l;
     int counter = 0;
+
+    Button btnAddBill, btnHome;
+    String total;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -50,41 +55,55 @@ public class Show_bills extends AppCompatActivity {
 
         //HOOKS
         ListaGastos = findViewById(R.id.Gastos);
-        viewBill = findViewById(R.id.viewBalance);
-        viewBalance = findViewById(R.id.viewCash);
+//        viewBillless = findViewById(R.id.viewBill);
+        viewCash = findViewById(R.id.viewCash);
+        viewTotal = findViewById(R.id.viewBalance);
+        btnAddBill = findViewById(R.id.btnAdd);
+        btnHome = findViewById(R.id.btnHome);
         requestQueue = Volley.newRequestQueue(this);
 
         //PUT USER NAME
         id = getIntent();
         String usrName = id.getStringExtra("nombre");
         String cash = id.getStringExtra("cash");
-//        String vGastado = id. getStringExtra("gastado");
-//
-//        int g = Integer.parseInt(vGastado);
-//        Double v = Double.parseDouble(cash);
-//
-//        v = (v - g);
+        total = id.getStringExtra("total");
 
         System.out.println("CASH QUE SE RECIBE SHOW BILLS " + cash);
         System.out.println("NOMBRE QUE SE RECIBE SHOW BILLS " + usrName);
 
-        //int ingreso = Integer.parseInt(cash);
-        //int gasto = Integer.parseInt(vGastado);
 
-        //ingreso = (ingreso - gasto);
-
-        viewBalance.setText("+" + cash + " $");
-//        viewUser.setText("Hola " + usrName);
+        viewCash.setText("+" + cash + " $");
+        viewTotal.setText("$ " + total);
 
         showBills(baseUrl);
 
+        listeners();
     }
+
+
+    private void listeners() {
+        btnAddBill.setOnClickListener((View view) -> {
+            l = new Intent(Show_bills.this, Input_Bill.class);
+            l.putExtra("saldo", total);
+            startActivity(l);
+            finish();
+        });
+
+        btnHome.setOnClickListener((View view) -> {
+            l = new Intent(Show_bills.this, Dashboard.class);
+            l.putExtra("saldo", total);
+            startActivity(l);
+            finish();
+        });
+    }
+
 
     private void showBills(String URL) {
         id = getIntent();
         String idUser = id.getStringExtra("id");
         System.out.println("ID QUE SE RECIBE SHOW BILLS " + idUser);
-        String direction = "gastos?usuario=" + idUser;
+
+        String direction = "gastos?id=" + idUser;
         String url = URL + direction;
         Log.i("URL", url);
 
@@ -101,6 +120,8 @@ public class Show_bills extends AppCompatActivity {
                             JSONArray jsonArray = response.getJSONArray("data");
                             int size = jsonArray.length();
 
+                            List<ListEmelemnt> items = new ArrayList<>();
+
                             for (int i = 0; i < size; i++) {
                                 JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
 
@@ -110,25 +131,24 @@ public class Show_bills extends AppCompatActivity {
                                 String billType = jsonObject.getString("tipo");
 
                                 String billLess = valor;
-                                viewBill.setText("-" + billLess + " $");
+//                                viewBillless.setText("-" + billLess + " $");
 
-                                List<ListEmelemnt> items = new ArrayList<>();
+                                items.add(new ListEmelemnt(null, null, gasto, valor, fecha, billType));
+
                                 ListAdapter adapter = new ListAdapter(items, Show_bills.this);
+                                adapter.setItems(items);
+                                adapter.notifyItemInserted(adapter.getItemCount() - 1);
+
 
                                 ListaGastos.setHasFixedSize(true);
                                 ListaGastos.setLayoutManager(new LinearLayoutManager(Show_bills.this));
                                 ListaGastos.setAdapter(adapter);
 
-                                String[] datos = {gasto, valor, fecha, billType};
-                                //for (int j = 0; j <= datos.length; j++) {
-                                    items.add(new ListEmelemnt(null, null, gasto, valor, fecha, billType));
-                                    adapter.setItems(items);
-                                    adapter.notifyItemInserted(adapter.getItemCount() - 1);
-                                //}
+
                             }
                         } catch (JSONException e) {
 
-                            System.out.println("ERROR: " + e.getMessage());
+                            System.out.println("ERROR: " + e);
                             e.printStackTrace();
 
                         }
